@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>领取奖励</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    #page2 {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 第一张图 -->
+  <img id="page1" src="img1.jpg" />
+
+  <!-- 第二张图 -->
+  <img id="page2" src="img2.jpg" />
+
+  <!-- 音频（关键） -->
+  <audio id="music" preload="auto">
+    <source src="kuli.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const music = document.getElementById("music");
+
+    // 用户点击触发（微信允许）
+    page1.addEventListener("click", () => {
+      page1.style.display = "none";
+      page2.style.display = "block";
+
+      music.currentTime = 0;
+      music.play().catch(() => {
+        console.log("微信拦截了播放，但通常点一次就能响");
+      });
+    });
+  </script>
+
+</body>
+</html>
